@@ -45,7 +45,11 @@ client.on("message", async message => {
       message.channel.send(helpMessage);
   }
   
-  // Jest Command
+  if(command === "laff") {
+    message.channel.send({files: ["./img/laff.png"]});
+    }
+  
+    // Jest Command
   // Basic template for commands
   // replace garbage with real word first
   if(command === "sdfasdfasdfasdgasdfasd") {
@@ -68,7 +72,7 @@ client.on("message", async message => {
         //const regex = /\b\w{5,10}\b/gm;
 
         lastMessage.forEach(word => {
-            if (word.length >= 5 ) {
+            if (word.length >= 6 ) {
                 const keys = Object.keys(emoji);
                 const randKey = keys[Math.floor(Math.random()*keys.length)];
                 const randEmoji = emoji[randKey];
