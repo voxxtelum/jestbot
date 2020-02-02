@@ -1,0 +1,15 @@
+{
+  "name": "jestbot",
+  "version": "1.0.0",
+  "description": "Those bogs made me laff.",
+  "main": "index.js",
+  "scripts": {
+    "test": "laff"
+  },
+  "author": "",
+  "license": "ISC",
+  "keywords": [],
+  "dependencies": {
+    "discord.js": "^11.5.1"
+  }
+}
