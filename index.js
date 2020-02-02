@@ -9,7 +9,7 @@ const config = require("./config.json");
 const emoji = require("./emoji.json");
 
 client.on("ready", () => {
-  console.log(`Bot has started, with ${client.users.size} users, in ${client.channels.size} channels of ${client.guilds.size} guilds.`);
+  console.log(`Bogs are laffing, bot is ready.`);
   client.user.setActivity('with bogs').catch(console.error);
 });
 
@@ -39,9 +39,16 @@ client.on("message", async message => {
     const emojiList = message.guild.emojis.map((e, x) => (x + ' = ' + e) + ' | ' +e.name).join('\n');
     message.channel.send(emojiList);}
 
+  // Jestbot command
+  if(command === "jestbot") {
+      let helpMessage = "To play with bogs, type !bogs";
+      message.channel.send(helpMessage);
+  }
+  
   // Jest Command
   // Basic template for commands
-  if(command === "jest") {
+  // replace garbage with real word first
+  if(command === "sdfasdfasdfasdgasdfasd") {
       message.channel.fetchMessages({ limit: 2 })
       .then(messages => {
           
@@ -50,23 +57,34 @@ client.on("message", async message => {
       });
   }
   
-  // Bogs Command
+  // bogs bogs bogs
   if(command === "bogs") {
+    // fetch command message and previous message
     message.channel.fetchMessages({ limit: 2 })
     .then(messages => {
-        const lastMessage = messages.last().content.trim();
-        const regex = /\b\w{5,10}\b/gm;
-        const keys = Object.keys(emoji);
-        const randKeys = keys[Math.floor(Math.random()*keys.length)];
-        const randEmoji = emoji[randKeys];
-        //const randEmoji = emoji.flavor;
-        let newMessage = lastMessage.replace(regex, randEmoji);
-        //message.channel.send(newMessage);
-        console.log(newMessage);
+        // sort to select message before command
+        const lastMessage = messages.last().content.trim().split(/[ ,]+/);
+        const newMessage = []
+        //const regex = /\b\w{5,10}\b/gm;
+
+        lastMessage.forEach(word => {
+            if (word.length >= 5 ) {
+                const keys = Object.keys(emoji);
+                const randKey = keys[Math.floor(Math.random()*keys.length)];
+                const randEmoji = emoji[randKey];
+                //console.log(randEmoji);
+                newMessage.push(randEmoji);
+            } else {
+                newMessage.push(word);
+            }
+        });
+        message.channel.send(newMessage.join(" "));
+        //console.log(newMessage.join(" "));
 
     });
   }
   // Purge Command
+  /*
   if(command === "purge") {
     const deleteCount = parseInt(args[0], 10);
     
@@ -76,6 +94,6 @@ client.on("message", async message => {
     message.channel.bulkDelete(fetched)
       .catch(error => message.reply(`Couldn't delete messages because of: ${error}`));
   }
+*/
 });
-
 client.login(config.token);
