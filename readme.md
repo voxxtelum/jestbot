@@ -2,8 +2,8 @@
 
 ### Config.json
 
-Add config.json file with oauth token from Discord
-Prefix to get bots attention
+1. Add config.json file with oauth token from Discord
+2. Prefix to get bots attention
 
 ```
 { 
