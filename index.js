@@ -8,21 +8,13 @@ const config = require("./config.json");
 // Load manual emoji list
 const emoji = require("./emoji.json");
 
+// owo
+const owoify = require('owoify-js').default;
+
 client.on("ready", () => {
   console.log(`Bogs are laffing, bot is ready.`);
   client.user.setActivity('with bogs').catch(console.error);
 });
-
-client.on("guildCreate", guild => {
-  console.log(`New guild joined: ${guild.name} (id: ${guild.id}). This guild has ${guild.memberCount} members!`);
-  client.user.setActivity('with bogs');
-});
-
-client.on("guildDelete", guild => {
-  console.log(`I have been removed from: ${guild.name} (id: ${guild.id})`);
-  client.user.setActivity('with bogs');
-});
-
 
 client.on("message", async message => {
   // Ignore bot messages
@@ -48,8 +40,18 @@ client.on("message", async message => {
   if(command === "laff") {
     message.channel.send({files: ["./img/laff.png"]});
     }
-  
-    // Jest Command
+
+  // owo
+  if(command === "uwu") {
+    message.channel.fetchMessages({ limit: 2 })
+    .then(messages => {
+      const lastMessage = messages.last().content.trim();
+      const newMessage = owoify(lastMessage, 'uwu');
+      message.channel.send(newMessage);
+      console.log(newMessage); 
+    });
+  }
+
   // Basic template for commands
   // replace garbage with real word first
   if(command === "sdfasdfasdfasdgasdfasd") {
