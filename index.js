@@ -39,11 +39,11 @@ client.on("message", async message => {
     const emojiList = message.guild.emojis.map((e, x) => (x + ' = ' + e) + ' | ' +e.name).join('\n');
     message.channel.send(emojiList);}
 
-  // Fetch last message
+  // Jest Command
+  // Basic template for commands
   if(command === "jest") {
       message.channel.fetchMessages({ limit: 2 })
       .then(messages => {
-          //const lastMessage = messages.last().content.trim().split((/[ ,]+/));
           
       }).catch(err => {
           console.error(err)
