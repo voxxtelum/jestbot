@@ -18,10 +18,10 @@ client.on("ready", () => {
 
 client.on("message", async message => {
   // Ignore bot messages
-  if(message.author.bot) return;
+  if (message.author.bot) return;
   
   // Ignore if message doesnt start with prefix
-  if(message.content.indexOf(config.prefix) !== 0) return;
+  if (message.content.indexOf(config.prefix) !== 0) return;
   
   const args = message.content.slice(config.prefix.length).trim().split(/ +/g);
   const command = args.shift().toLowerCase();
@@ -29,52 +29,53 @@ client.on("message", async message => {
   // Grab all emoji list
   if (command === "listemojis") {
     const emojiList = message.guild.emojis.map((e, x) => (x + ' = ' + e) + ' | ' +e.name).join('\n');
-    message.channel.send(emojiList);}
+    message.channel.send(emojiList);
+  }
 
   // Jestbot command
-  if(command === "jestbot") {
-      let helpMessage = "To play with bogs, type !bogs";
-      message.channel.send(helpMessage);
+  if (command === "jestbot") {
+    const helpMessage = "To play with bogs, type !bogs";
+    message.channel.send(helpMessage);
   }
   
-  if(command === "laff") {
+  if (command === "laff") {
     message.channel.send({files: ["./img/laff.png"]});
-    }
+  }
 
   // owo
-  if(command === "uwu") {
+  if (command === "uwu") {
     message.channel.fetchMessages({ limit: 2 })
-    .then(messages => {
-      const lastMessage = messages.last().content.trim();
-      const newMessage = owoify(lastMessage, 'uwu');
-      message.channel.send(newMessage);
-      console.log(newMessage); 
-    });
+      .then(messages => {
+        const lastMessage = messages.last().content.trim();
+        const newMessage = owoify(lastMessage, 'uwu');
+        message.channel.send(newMessage);
+        console.log(newMessage); 
+      });
   }
 
   // Basic template for commands
   // replace garbage with real word first
-  if(command === "sdfasdfasdfasdgasdfasd") {
+  if (command === "sdfasdfasdfasdgasdfasd") {
       message.channel.fetchMessages({ limit: 2 })
-      .then(messages => {
-          
-      }).catch(err => {
-          console.error(err)
-      });
+        .then(messages => {
+     
+        }).catch(err => {
+            console.error(err);
+        });
   }
   
   // bogs bogs bogs
-  if(command === "bogs") {
+  if (command === "bogs") {
     // fetch command message and previous message
     message.channel.fetchMessages({ limit: 2 })
-    .then(messages => {
+      .then(messages => {
         // sort to select message before command
         const lastMessage = messages.last().content.trim().split(/[ ,]+/);
-        const newMessage = []
+        const newMessage = [];
         //const regex = /\b\w{5,10}\b/gm;
 
         lastMessage.forEach(word => {
-            if (word.length >= 6 ) {
+            if (word.length >= 6) {
                 const keys = Object.keys(emoji);
                 const randKey = keys[Math.floor(Math.random()*keys.length)];
                 const randEmoji = emoji[randKey];
@@ -86,9 +87,9 @@ client.on("message", async message => {
         });
         message.channel.send(newMessage.join(" "));
         //console.log(newMessage.join(" "));
-
-    });
+      });
   }
+
   // Purge Command
   /*
   if(command === "purge") {
