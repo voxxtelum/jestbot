@@ -155,7 +155,7 @@ client.on("message", async message => {
         // How many words were replaced?
         //const replacedLen = replacedWords.length;
         
-        message.channel.send(newMessage.join(" "));
+        message.channel.send(newMessage.join(" ")).catch(console.error);
         //message.channel.send(newMessage.join(" ") + " | Total: " + messageLength + " | Replaced: " + replacedLen);
 
         //console.log(newMessage.join(" ") + " | Total: " + messageLength + " | Replaced: " + replacedLen);
