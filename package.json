@@ -6,7 +6,11 @@
   "scripts": {
     "test": "laff"
   },
-  "author": "",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/voxxtelum/jestbot.git"
+  },
+  "author": "voxxtelum",
   "license": "ISC",
   "keywords": [],
   "dependencies": {

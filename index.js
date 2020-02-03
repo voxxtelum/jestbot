@@ -71,11 +71,16 @@ client.on("message", async message => {
   if (command === "uwu") {
     message.channel.fetchMessages({ limit: 2 })
     .then(messages => {
-      const lastMessage = messages.last().content.trim();
-      const newMessage = owoify(lastMessage, 'uwu');
-      message.channel.send(newMessage);
-      console.log(newMessage); 
-    });
+      if (messages.last().attachments.size > 0 ) {
+        message.channel.send("I can't do that on picture ya dingus");
+      } 
+      else {
+        const lastMessage = messages.last().content.trim();
+        const newMessage = owoify(lastMessage, 'uwu');
+        message.channel.send(newMessage);
+        //console.log(newMessage); 
+      }
+    }).catch(console.error);
   }
 
   // bogs bogs bogs
