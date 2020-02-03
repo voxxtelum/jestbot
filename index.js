@@ -15,8 +15,8 @@ const owoify = require('owoify-js').default;
 const botID = config.botID;
 
 // wordpos
-var WordPOS = require('wordpos'),
-    wordpos = new WordPOS();
+const WordPOS = require('wordpos'),
+      wordpos = new WordPOS();
 
 client.on("ready", () => {
   console.log(`Bogs are laffing, bot is ready.`);
