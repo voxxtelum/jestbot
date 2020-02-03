@@ -1,3 +1,4 @@
 /node_modules
 config.1.json
+docker-compose.yml
 .DS_Store
