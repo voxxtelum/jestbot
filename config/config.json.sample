@@ -1,0 +1,5 @@
+{ 
+    "token"  : "_Paste bot token ID here from Discord Developer site_",
+    "botID"  : "_Paste bot's User ID_",
+    "prefix" : "!"
+}
