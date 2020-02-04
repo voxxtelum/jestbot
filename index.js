@@ -3,7 +3,7 @@ const Discord = require("discord.js");
 const client = new Discord.Client();
 
 // Load config.json
-const config = require("/config.json");
+const config = require("./config/config.json");
 
 // Load manual emoji list
 const emoji = require("./config/emoji.json");
@@ -183,4 +183,4 @@ client.on("message", async message => {
   } */
 });
 
-client.login(config.token);
+client.login(config.token).catch(console.error);
