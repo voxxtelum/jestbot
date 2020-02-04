@@ -3,7 +3,6 @@ WORKDIR /usr/src/app
 COPY package.json package-lock.json ./
 RUN npm install
 COPY . .
-RUN touch config.json
-RUN chmod 755 config.json
+RUN mv config.json.sample config.json
 EXPOSE 3000
 CMD node index.js
