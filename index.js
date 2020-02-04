@@ -95,6 +95,7 @@ client.on("message", async message => {
         if (messages.last().attachments.size > 0 ) {
           message.channel.send("I can't do that on picture ya dingus");
         }
+        else {
 
         // Get number of words in message
         const messageLength = lastMessage.length;
@@ -164,6 +165,8 @@ client.on("message", async message => {
         //message.channel.send(newMessage.join(" ") + " | Total: " + messageLength + " | Replaced: " + replacedLen);
 
         //console.log(newMessage.join(" ") + " | Total: " + messageLength + " | Replaced: " + replacedLen);
+      
+      }
 
     });
   }
