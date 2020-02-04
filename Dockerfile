@@ -1,6 +1,6 @@
 FROM node:12.14-alpine
 WORKDIR /usr/src/app
-COPY package.json .
+COPY package.json packagelock.json ./
 RUN npm install
 COPY . .
 RUN touch config.json
