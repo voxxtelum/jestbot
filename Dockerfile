@@ -5,5 +5,4 @@ RUN npm install
 COPY . .
 RUN cd ./config && mv config.json.sample config.json
 EXPOSE 3000
-VOLUME ./config
 CMD node index.js
