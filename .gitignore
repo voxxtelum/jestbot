@@ -1,4 +1,8 @@
+**.DS_Store
 /node_modules
-config.json
-docker-compose*
-*.DS_Store
+/data/*
+**/config/config.js
+**/config/*.json
+**/emoji*
+**.bak
+**/._*.*
