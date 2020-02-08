@@ -7,12 +7,15 @@ exports.run = async (client, message, args) => {
 
   var flavor = message.guild.emojis.find(emoji => emoji.name == 'flavor');
 
+  let flavorEmoji = (flavor) ? `<:flavor:${flavor.id}>` : '';
+
+  /*
   if (flavor) {
     message.channel.send(`<:flavor:${flavor.id}>`);
   }
-  //message.channel.send(flavor);
+  */
 
-  //message.channel.send(`<:flavor:673252753245601794> ${guyQuote}`);
+  message.channel.send(`${flavorEmoji} ${guyQuote}`);
 
 
 }
