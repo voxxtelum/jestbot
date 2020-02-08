@@ -7,7 +7,7 @@ exports.run = async (client, message, args) => {
   // e = emoji, x = id
   //const emojiList = message.guild.emojis.map((e, x) => (x + ' = ' + e) + ' | ' + e.name).join('\n');
   //const emojiList = message.guild.emojis.map((e, x) => ('"' + e.name + '":' + ' <:' + x + ': ' + e + '">')).join('\n');
-  const emojiList = message.guild.emojis.map((e, x) => ('"' + e.name + '": ' + '"<' + e.name + ':' + x + '>"')).join('\n');
+  const emojiList = message.guild.emojis.map((e, x) => ('"' + e.name + '": ' + '"<' + e.name + ':' + x + '>"')).join(',\n');
   message.channel.send("```{\n" + emojiList + "\n}```");
 
 };

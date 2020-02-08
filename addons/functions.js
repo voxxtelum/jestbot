@@ -1,5 +1,7 @@
 module.exports = (client) => {
 
+  const random = require('../addons/random.js');
+
   // Set detfault setings
   // Will be overwritting by settings in ./config/config.js
   const defaultSettings = {
@@ -67,9 +69,6 @@ module.exports = (client) => {
   // Turning !roll into something I can use anywhere
   client.rollNumbers = async (message, args) => {
     const messageAuthor = `<@${message.author.id}>`;
-    // Let's get some random number shit
-    const Random = require('random-js').Random;
-    const random = new Random();
 
     try {
       if (!args.length) {
@@ -121,39 +120,12 @@ module.exports = (client) => {
     }
   };
 
-  /*
-  // Breakout transformWord for bogs
-  client.transformWord = async (word) => {
-    // wordpos
-    const WordPOS = require('wordpos'),
-      wordpos = new WordPOS();
-    const Random = require('random-js').Random,
-      r = new Random();
-    // Load manual emoji list
-    const emoji = require("../config/emoji.json");
-
-    const randomEmoji = (type) => {
-      if (type == 'all') {
-        candidates = emoji.values();
-        const selectEmoji = r.picker(candidates, 0, candidates.length);
-        return selectEmoji;
-      }
+  // Truncate string to avoid discord character limit
+  Object.defineProperty(String.prototype, "truncate", {
+    value: function (len) {
+      return this.substr(0, len);
     }
-
-    try {
-
-      // If word had definitions for all 3 then pull any random emoji
-      if (wordpos.isNoun(word) && wordpos.isAdjective(word) && wordpos.isVerb(word)) {
-        const replacement = randomEmoji(word);
-        return replacement;
-      }
-
-    } catch (e) {
-      return `transformWord broken: ${e}`;
-    }
-  };
-  */
-
+  });
 
   // Neat little thing to fix case of string
   Object.defineProperty(String.prototype, "toProperCase", {

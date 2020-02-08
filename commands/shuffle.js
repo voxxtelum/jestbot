@@ -1,17 +1,22 @@
-const Random = require('random-js').Random,
-  r = new Random();
+//const Random = require('random-js').Random,
+//  r = new Random();
+
+const random = require('../addons/random.js');
 
 exports.run = async (client, message, args) => {
 
   // Need to grab last 2 messages and .last() to get message to transform
   message.channel.fetchMessages({ limit: 2 })
     .then(messages => {
+      const lastMessage = messages.last().content.trim().split(/[ ,]+/);
       if (messages.last().attachments.size > 0) {
         message.channel.send("I can't do that on picture ya dingus");
       }
+      else if (lastMessage.length === 1) {
+        message.channel.send("What did you think would happen there, smooth brain?");
+      }
       else {
-        const lastMessage = messages.last().content.trim().split(/[ ,]+/);
-        const newMessage = r.shuffle(lastMessage).join(" ");
+        var newMessage = random.shuffle(lastMessage).join(" ");
         message.channel.send(newMessage);
       }
     });

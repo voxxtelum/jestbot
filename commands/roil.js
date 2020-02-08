@@ -1,7 +1,4 @@
 const suvmj = require('../config/sudoers.json');
-// Let's get some random number shit
-const Random = require('random-js').Random;
-const random = new Random();
 
 exports.run = async (client, message, args) => {
   if (suvmj.includes(message.author.id)) {
