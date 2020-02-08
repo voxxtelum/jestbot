@@ -26,6 +26,7 @@ require("./addons/functions.js")(client);
 client.commands = new Enmap();
 client.aliases = new Enmap();
 client.settings = new Enmap({ name: "settings" });
+client.uwuCount = new Enmap({ name: "uwuCount" });
 
 // is that an anoymous function uwu?
 const init = async () => {
@@ -51,10 +52,9 @@ const init = async () => {
     client.on(eventName, event.bind(null, client));
   });
 
-  // Here we login the client.
+  // Log in client
   client.login(client.config.token);
 
-  // End top-level async/await function.
 };
 
 init();
