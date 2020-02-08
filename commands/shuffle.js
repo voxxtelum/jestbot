@@ -1,6 +1,3 @@
-//const Random = require('random-js').Random,
-//  r = new Random();
-
 const random = require('../addons/random.js');
 
 exports.run = async (client, message, args) => {

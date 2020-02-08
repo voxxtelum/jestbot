@@ -25,17 +25,6 @@ const random = require('../addons/random.js');
 // Load manual emoji list
 const emoji = require('../config/emoji.json');
 
-// check if previous word was transformed
-// with regex pattern matching emoji like <:bogs:672137714266537988>
-const checkPreviousWord = (arr, i) => {
-  const regex = /(<:)[A-z]+(:)[0-9]+(>)/;
-  if (regex.test(arr[(i - 1)])) {
-    return true;
-  } else {
-    return false;
-  }
-};
-
 exports.run = async (client, message) => {
 
   // Fetch !command message and previous message
@@ -56,7 +45,7 @@ exports.run = async (client, message) => {
           // skip first word
           if (index === 0) {
             newMessage.push(word);
-          } else if (checkPreviousWord(newMessage, index)) {
+          } else if (client.checkEmojiArr(newMessage, (index - 1))) {
             newMessage.push(word);
           } else if (word.length < 4) {
             newMessage.push(word);

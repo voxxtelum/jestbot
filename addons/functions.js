@@ -66,6 +66,15 @@ module.exports = (client) => {
 
   // Misc functions
 
+  // Check if array value is emoji. Can be used to check current or previous
+  // values, etc are emojis
+
+  client.checkEmojiArr = async (a, i) => {
+    const regex = /[-0-z]*(<:|:)[-0-z]+/;
+    if (regex.test(a[i])) return true;
+    return false;
+  };
+
   // Turning !roll into something I can use anywhere
   client.rollNumbers = async (message, args) => {
     const messageAuthor = `<@${message.author.id}>`;

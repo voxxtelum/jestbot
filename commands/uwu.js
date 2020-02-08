@@ -5,16 +5,6 @@ const owoify = require('owoify-js').default;
 ***   Ignore emojis somehow
 
 */
-// Getting some !bogs technology
-const isEmoji = (arr, i) => {
-  const regex = /[0-z]*(<:|:)[0-z]+/;
-  //const regex = /(<:)[A-z]+(:)[0-9]+(>)/;
-  if (regex.test(arr[i])) {
-    return true;
-  } else {
-    return false;
-  }
-};
 
 exports.run = async (client, message, args) => {
 
@@ -59,13 +49,13 @@ exports.run = async (client, message, args) => {
         // Send the message as a code block
         message.channel.send("```" + uwuBoard.join('\n') + "```");
       }
-      else if (!args) {
+      else if (!args.length) {
         const lastMessage = messages.last().content.trim().split(/[ ,]+/),
           newMessage = [],
           regex = /[-0-z]*(<:|:)[-0-z]+/;
 
-        lastMessage.forEach((word) => {
-          if (regex.test(word)) {
+        lastMessage.forEach((word, index, array) => {
+          if (client.checkEmojiArr(array[index])) {
             newMessage.push(word);
           } else {
             newMessage.push(owoify(word, 'uwu'));
