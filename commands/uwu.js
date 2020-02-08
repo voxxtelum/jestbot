@@ -78,7 +78,7 @@ exports.run = async (client, message, args) => {
 
         lastMessage.forEach((word, index, array) => {
           //if (client.checkEmojiArr(array[index])) {
-          if (checkEmojiStr(word)) {
+          if (client.checkEmojiStr(word)) {
             newMessage.push(word);
           } else {
             newMessage.push(owoify(word, 'uwu'));
