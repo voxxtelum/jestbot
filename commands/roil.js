@@ -16,6 +16,7 @@ exports.conf = {
   enabled: true,
   guildOnly: true,
   // require author.id match one in /config/sudoers.json
+  // not yet implemented
   sudoers: true,
   aliases: ["roli", "roii"],
 };

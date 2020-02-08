@@ -49,10 +49,24 @@ exports.run = async (client, message, args) => {
         // Send the message as a code block
         message.channel.send("```" + uwuBoard.join('\n') + "```");
       }
+      else if (args[0] == 'stats') {
+        const key = `${message.guild.id}-${message.author.id}`;
+        client.uwuCount.ensure(key, {
+          user: message.author.id,
+          guild: message.guild.id,
+          points: 0,
+        });
+
+        const messageAuthor = `<@${message.author.id}>`;
+        const uwuPoints = client.uwuCount.get(key, 'points');
+
+        if (message) message.delete();
+        message.channel.send(`${messageAuthor} has used !uwu ${uwuPoints} times!`);
+
+      }
       else if (!args.length) {
         const lastMessage = messages.last().content.trim().split(/[ ,]+/),
-          newMessage = [],
-          regex = /[-0-z]*(<:|:)[-0-z]+/;
+          newMessage = [];
 
         lastMessage.forEach((word, index, array) => {
           if (client.checkEmojiArr(array[index])) {
@@ -67,6 +81,7 @@ exports.run = async (client, message, args) => {
           user: message.author.id,
           guild: message.guild.id,
           points: 1,
+
         });
         client.uwuCount.inc(key, "points");
 

@@ -131,8 +131,9 @@ module.exports = (client) => {
 
   // Truncate string to avoid discord character limit
   Object.defineProperty(String.prototype, "truncate", {
-    value: function (len) {
-      return this.substr(0, len);
+    value: function (len = 0, end = '') {
+      len -= end.length;
+      return this.substr(0, len) + end;
     }
   });
 
