@@ -18,7 +18,7 @@ exports.run = async (client, message, args) => {
     "  _\\ \\ \\ \\____\\/\\____/\\ \\__\\\\ \\_,__/\\ \\____/\\ \\__\\     /\\______/ \n" +
     " /\\ \\_\\ \\/____/\\/___/  \\/__/ \\/___/  \\/___/  \\/__/     \\/_____/ \n" +
     " \\ \\____/\n" +
-    "  \\/___/                             Electric Bogaloo\n\n" +
+    "  \\/___/                             Electric BOGaloo\n\n" +
     "To play with bogs, type !bogs. For a laff, type !laff\n" +
     "To disgust everyone around you, type !uwu.\n\n" +
     "***NEW IN JESTBOT2: ELECTRIC BOGALOO***\n" +

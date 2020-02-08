@@ -1,13 +1,22 @@
-/*========================= TODO ========================*
-*** Add emojis to file or enmap
+const quotes = require('../lang/fieri.json');
+const random = require('../addons/random.js');
 
-*/
 exports.run = async (client, message, args) => {
 
-  const emojiList = message.guild.emojis.map((e, x) => ('"' + e.name + '": ' + '"<' + e.name + ':' + x + '>"')).join(',\n');
-  message.channel.send("```{\n" + emojiList + "\n}```");
+  const guyQuote = random.element(quotes);
 
-};
+  var flavor = message.guild.emojis.find(emoji => emoji.name == 'flavor');
+
+  if (flavor) {
+    message.channel.send(`<:flavor:${flavor.id}>`);
+  }
+  //message.channel.send(flavor);
+
+  //message.channel.send(`<:flavor:673252753245601794> ${guyQuote}`);
+
+
+}
+
 
 exports.conf = {
   // Enbable/disable command
@@ -16,17 +25,17 @@ exports.conf = {
   // false lets bot respond to DMs
   guildOnly: true,
   // bot also reacts to these commands
-  aliases: [],
+  aliases: ['guyfieri', 'fieri', 'guy'],
 };
 
 exports.help = {
   // name of command that triggers response
-  name: "listemojis",
+  name: "flavor",
   // bot category, might want to use this somehow later
   // with a !help command to tell people how to use it
   category: "Miscellaneous",
   // same as above; pretty explanatory
-  description: "Lists all emojis on server",
+  description: "we're going to flavor town",
   // also same as above, just useful for !help command
-  usage: "listemojis"
+  usage: "flavor"
 };

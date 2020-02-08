@@ -71,8 +71,20 @@ module.exports = (client) => {
 
   client.checkEmojiArr = async (a, i) => {
     const regex = /[-0-z]*(<:|:)[-0-z]+/;
-    if (regex.test(a[i])) return true;
-    return false;
+    if (regex.test(a[i])) {
+      return true
+    } else {
+      return false
+    }
+  };
+
+  client.checkEmojiStr = (w) => {
+    const regex = /[-0-z]*(<:|:)[-0-z]+/;
+    if (regex.test(w)) {
+      return true
+    } else {
+      return false
+    }
   };
 
   // Turning !roll into something I can use anywhere

@@ -6,6 +6,15 @@ const owoify = require('owoify-js').default;
 
 */
 
+const checkEmoji = (w) => {
+  const regex = /[-0-z]*(<:|:)[-0-z]+/;
+  if (regex.test(w)) {
+    return true
+  } else {
+    return false
+  }
+};
+
 exports.run = async (client, message, args) => {
 
   // Need to grab last 2 messages and .last() to get message to transform
@@ -38,7 +47,7 @@ exports.run = async (client, message, args) => {
             // returns username if Nickname not set
             userNick = userObj.displayName.truncate(20);
           var spacing = 20 - userNick.length,
-            spacer = "-";
+            spacer = "--";
           for (i = 0; i < spacing; i++) {
             spacer += "-";
           };
@@ -60,7 +69,6 @@ exports.run = async (client, message, args) => {
         const messageAuthor = `<@${message.author.id}>`;
         const uwuPoints = client.uwuCount.get(key, 'points');
 
-        if (message) message.delete();
         message.channel.send(`${messageAuthor} has used !uwu ${uwuPoints} times!`);
 
       }
@@ -69,7 +77,8 @@ exports.run = async (client, message, args) => {
           newMessage = [];
 
         lastMessage.forEach((word, index, array) => {
-          if (client.checkEmojiArr(array[index])) {
+          //if (client.checkEmojiArr(array[index])) {
+          if (checkEmojiStr(word)) {
             newMessage.push(word);
           } else {
             newMessage.push(owoify(word, 'uwu'));
