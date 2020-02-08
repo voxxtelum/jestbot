@@ -9,12 +9,6 @@ exports.run = async (client, message, args) => {
 
   let flavorEmoji = (flavor) ? `<:flavor:${flavor.id}>` : '';
 
-  /*
-  if (flavor) {
-    message.channel.send(`<:flavor:${flavor.id}>`);
-  }
-  */
-
   message.channel.send(`${flavorEmoji} ${guyQuote}`);
 
 
