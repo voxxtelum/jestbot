@@ -35,42 +35,6 @@ exports.run = async (client, message, args) => {
       }, delay, { iterations: hackAppend.length })
     });
 
-
-
-  /*
-  message.channel.send(hackBlock, { code: true })
-    .then((msg) => {
-      setTimeout(function () {
-        msg.edit(`Hacking ${username}..`, { code: true });
-        setTimeout(function () {
-          msg.edit(`Hacking ${username}...`, { code: true });
-          setTimeout(function () {
-            msg.edit(`Hacking ${username}.... \nCreating GUI Interface in Visual Basic.`, { code: true });
-            setTimeout(function () {
-              msg.edit(`Hacking ${username}.... \nCreating GUI Interface in Visual Basic..`, { code: true });
-              setTimeout(function () {
-                msg.edit(`Hacking ${username}.... \nCreating GUI Interface in Visual Basic...`, { code: true });
-                setTimeout(function () {
-                  msg.edit(`Hacking ${username}.... \nCreating GUI Interface in Visual Basic....`, { code: true });
-                  setTimeout(function () {
-                    msg.edit(`Hacking ${username}.... \nCreating GUI Interface in Visual Basic.... \nTracking IP Address.`, { code: true });
-                    setTimeout(function () {
-                      msg.edit(`Hacking ${username}.... \nCreating GUI Interface in Visual Basic.... \nTracking IP Address..`, { code: true });
-                      setTimeout(function () {
-                        msg.edit(`Hacking ${username}.... \nCreating GUI Interface in Visual Basic.... \nTracking IP Address...ACQUIRED`, { code: true });
-                      }, delay);
-                    }, delay);
-                  }, delay);
-                }, delay);
-              }, delay);
-            }, delay);
-          }, delay);
-        }, delay);
-      }, delay);
-    });  // Properties of each command
-  // Used to check requirements in events/message.js
-  */
-
 };
 
 exports.conf = {
