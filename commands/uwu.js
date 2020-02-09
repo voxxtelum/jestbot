@@ -56,7 +56,7 @@ exports.run = async (client, message, args) => {
 
         });
         // Send the message as a code block
-        message.channel.send("```" + uwuBoard.join('\n') + "```");
+        message.channel.send(uwuBoard.join('\n'), { code: true });
       }
       else if (args[0] == 'stats') {
         const key = `${message.guild.id}-${message.author.id}`;
