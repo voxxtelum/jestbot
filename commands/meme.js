@@ -1,3 +1,14 @@
+/*eslint no-warning-comments: ["error", { "terms": ["todo", "fixme", "any other term"], "location": "anywhere" }]*/
+/*
+todo - breakout canvas function
+
+todo - make order of args less important
+     - remove url with a regex test and splice
+todo - allow more arguments for customisation
+     - color:, font:
+
+*/
+
 const Discord = require("discord.js");
 
 const Canvas = require('canvas');
@@ -23,6 +34,7 @@ exports.run = async (client, message, args) => {
     const regex = /[-a-zA-Z0-9@:%._\+~#=]{1,256}\.[a-zA-Z0-9()]{1,6}\b([-a-zA-Z0-9()@:%_\+.~#?&//=]*)/g;
     if (regex.test(args[0])) {
 
+      // ? Get Arguments after URL if first argument is URL
       // remove URL from args array
       const messageArgs = args.splice(1).join(' ');
 
@@ -34,7 +46,9 @@ exports.run = async (client, message, args) => {
         botText = messageArr[1].trim();
 
       let imgURL = args[0];
+      // ? End Arguments
 
+      // ? Start breakout. Load image, Create cavnas, Draw text
       const background = await Canvas.loadImage(imgURL);
       var bW = background.width;
       var bH = background.height;
@@ -58,10 +72,13 @@ exports.run = async (client, message, args) => {
       ctx.fillText(botText, canvas.width * .5, canvas.height * .98, canvas.width);
       ctx.strokeText(botText, canvas.width * .5, canvas.height * .98, canvas.width);
 
+      // ? End breakout. SHould return canvas to send to discord
+
       const attachment = new Discord.Attachment(canvas.toBuffer(), 'meme-image.png');
 
       message.channel.send('', attachment);
 
+      // delete message to reduce clutter
       if (message) message.delete();
 
     } else {
