@@ -41,12 +41,12 @@ exports.conf = {
   // false lets bot respond to DMs
   guildOnly: true,
   // bot also reacts to these commands
-  aliases: [],
+  aliases: ['jestbeta'],
 };
 
 exports.help = {
   // name of command that triggers response
-  name: "jestbeta",
+  name: "jestbot",
   // bot category, might want to use this somehow later
   // with a !help command to tell people how to use it
   category: "Miscellaneous",

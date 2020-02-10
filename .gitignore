@@ -5,6 +5,7 @@ Desktop.ini
 /node_modules
 /data/*
 docker-compose**
+/commands/roil.js
 **/config/config.js
 **/config/*.json
 **/emoji*

@@ -71,11 +71,11 @@ exports.run = async (client, message) => {
 exports.conf = {
   enabled: true,
   guildOnly: true,
-  aliases: [],
+  aliases: ['bbogs'],
 };
 
 exports.help = {
-  name: "bbogs",
+  name: "bogs",
   category: "bogs",
   description: "play with some bogs",
   usage: "bogs"

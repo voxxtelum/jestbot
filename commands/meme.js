@@ -77,7 +77,7 @@ exports.conf = {
   // false lets bot respond to DMs
   guildOnly: true,
   // bot also reacts to these commands
-  aliases: ['guyfieri', 'fieri', 'guy'],
+  aliases: [],
 };
 
 exports.help = {
