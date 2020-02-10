@@ -1,18 +1,28 @@
 
-# Jestbot
+```
+                    __    __              __            ___
+ __                /\ \__/\ \            /\ \__       /'___`\
+/\_\     __    ____\ \ ,_\ \ \____    ___\ \ ,_\     /\_\ /\ \  
+\/\ \  /'__`\ /',__\\ \ \/\ \ '__`\  / __`\ \ \/     \/_/// /__
+ \ \ \/\  __//\__, `\\ \ \_\ \ \L\ \/\ \L\ \ \ \_       // /_\ \
+ _\ \ \ \____\/\____/ \ \__\\ \_,__/\ \____/\ \__\     /\______/
+/\ \_\ \/____/\/___/   \/__/ \/___/  \/___/  \/__/     \/_____/
+\ \____/
+ \/___/                            Electric Bogaloo
 
-- *Those bogs make me laff*
+```
 
-## Config.json
+*Those bogs make me laff*
 
-1. Add config.json file with oauth token from Discord
-2. Add bot's User ID
-3. Prefix to get bots attention
+### Config.js
 
 ```json
 {
-    "token"  : "_Paste bot token ID here from Discord Developer site_",
-    "botID"  : "_Paste bot's User ID_",
-    "prefix" : "!"
+  // Bot owner ID
+  "ownerID": "User ID"
+  // Bot token from https://discordapp.com/developers/applications/me
+  "token": "token"
+  // Bot Activity message that will load on.ready
+  "botActivity": "activity"
 }
 ```

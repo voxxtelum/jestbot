@@ -1,4 +1,7 @@
-**.DS_Store
+._*
+Thumbs.db
+.DS_Store
+Desktop.ini
 /node_modules
 /data/*
 docker-compose**
@@ -6,5 +9,4 @@ docker-compose**
 **/config/*.json
 **/emoji*
 **.bak
-**/._*.*
 .eslint*
