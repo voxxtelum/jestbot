@@ -51,20 +51,17 @@ exports.run = async (client, message) => {
             newMessage.push(word);
           } else if (random.chance(transformChance)) {
             //transform word
-            //newEmoji = r.picker(emoji);
             newMessage.push(random.element(emoji));
           } else {
             newMessage.push(word);
           }
         });
 
-        console.log(newMessage.join(' '));
         message.channel.send(newMessage.join(" "));
 
       }
 
-    })
-    .catch(console.error());
+    });
 
 };
 

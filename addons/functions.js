@@ -69,14 +69,14 @@ module.exports = (client) => {
   // Check if array value is emoji. Can be used to check current or previous
   // values, etc are emojis
 
-  client.checkEmojiArr = async (a, i) => {
+  client.checkEmojiArr = (a, i) => {
     const regex = /[-0-z]*(<:|:)[-0-z]+/;
     return regex.test(a[i]);
-  };
+  }
 
   client.checkEmojiStr = (w) => {
     const regex = /[-0-z]*(<:|:)[-0-z]+/;
-    return regex.test(w);
+    return (regex.test(w));
   };
 
   // Turning !roll into something I can use anywhere
