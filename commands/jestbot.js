@@ -1,8 +1,5 @@
-/*========================= TODO ========================*
 
-
-*/
-exports.run = async (client, message, args) => {
+exports.run = async (client, message) => {
   /*
     let helpMessage = `Welcome to Jestbot 2.0!
     To play with bogs, type **!bogs**. For a laff, type **!laff**.
@@ -11,10 +8,10 @@ exports.run = async (client, message, args) => {
 
   let helpMessage = "```" +
     "                    __    __              __            ___     \n" +
-    "  __               /\\ \\__/\\ \\            /\\ \\__       /'___\`\\   \n" +
+    "  __               /\\ \\__/\\ \\            /\\ \\__       /'___`\\   \n" +
     " /\\_\\     __    ___\\ \\ ,_\\ \\ \\____    ___\\ \\ ,_\\     /\\_\\ /\\ \\  \n" +
-    " \\/\\ \\  /'__\`\\ /',__\\ \\ \\/\\ \\ '__\`\\  / __\`\\ \\ \\/     \\/_/// /__ \n" +
-    "  \\ \\ \\/\\  __//\\__, \`\\ \\ \\_\\ \\ \\L\\ \\/\\ \\L\\ \\ \\ \\_       // /_\\ \\ \n" +
+    " \\/\\ \\  /'__`\\ /',__\\ \\ \\/\\ \\ '__`\\  / __`\\ \\ \\/     \\/_/// /__ \n" +
+    "  \\ \\ \\/\\  __//\\__, `\\ \\ \\_\\ \\ \\L\\ \\/\\ \\L\\ \\ \\ \\_       // /_\\ \\ \n" +
     "  _\\ \\ \\ \\____\\/\\____/\\ \\__\\\\ \\_,__/\\ \\____/\\ \\__\\     /\\______/ \n" +
     " /\\ \\_\\ \\/____/\\/___/  \\/__/ \\/___/  \\/___/  \\/__/     \\/_____/ \n" +
     " \\ \\____/\n" +
@@ -42,12 +39,10 @@ exports.run = async (client, message, args) => {
   message.channel.send({ embed: newEmbed });
 
   */
-
-
 };
 
 exports.conf = {
-  // Enbable/disable command
+  // Enable/disable command
   enabled: true,
   // set true if only usable in normal channels
   // false lets bot respond to DMs

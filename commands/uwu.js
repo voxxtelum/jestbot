@@ -1,19 +1,13 @@
 // owo
 const owoify = require('owoify-js').default;
 
-/*========================= TODO ========================*
-***   Ignore emojis somehow
-
-*/
-
+/*
+? example checkEmoji
 const checkEmoji = (w) => {
   const regex = /[-0-z]*(<:|:)[-0-z]+/;
-  if (regex.test(w)) {
-    return true
-  } else {
-    return false
-  }
+  return regex.test(w);
 };
+*/
 
 exports.run = async (client, message, args) => {
 
@@ -33,9 +27,8 @@ exports.run = async (client, message, args) => {
         // Creata array out of the uwuCount enmap, sort by points desc,
         // and take only the top 10 ones
         const countArray = client.uwuCount.array().sort((a, b) => (a.points < b.points) ? 1 : -1).slice(0, 10);
-        //console.log(countArray);
-
-        const uwuBoard = ["･ﾟ★ヽ(*・ω・)ﾉuwu Leaderboard ★･ﾟ\n"];
+        // Leaderboard title
+        const uwuBoard = ["･ﾟ★ uwu Leaderboard ヽ(*・ω・)ﾉ ★･ﾟ\n"];
 
         var p = 1;
 
@@ -45,12 +38,11 @@ exports.run = async (client, message, args) => {
           const userObj = message.guild.members.find(val => val.id === uwuser.user),
             // displayName property returns server set Nickname, otherwise
             // returns username if Nickname not set
-            userNick = userObj.displayName.truncate(20);
+            userName = userObj.displayName;
+          let userNick = (userName.length >= 20) ? userName.truncate(19).padEnd(20, '…') : userName;
           var spacing = 20 - userNick.length,
-            spacer = "--";
-          for (i = 0; i < spacing; i++) {
-            spacer += "-";
-          };
+            spacer = ''.padEnd(spacing, ' ');
+
           uwuBoard.push(`${p}. ${userNick} ${spacer} ${uwuser.points} uwus!`);
           p++;
 
@@ -76,8 +68,7 @@ exports.run = async (client, message, args) => {
         const lastMessage = messages.last().content.trim().split(/[ ,]+/),
           newMessage = [];
 
-        lastMessage.forEach((word, index, array) => {
-          //if (client.checkEmojiArr(array[index])) {
+        lastMessage.forEach((word) => {
           if (client.checkEmojiStr(word)) {
             newMessage.push(word);
           } else {

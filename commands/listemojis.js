@@ -2,7 +2,7 @@
 *** Add emojis to file or enmap
 
 */
-exports.run = async (client, message, args) => {
+exports.run = async (client, message) => {
 
   const emojiList = message.guild.emojis.map((e, x) => ('"' + e.name + '": ' + '"<:' + e.name + ':' + x + '>"')).join(',\n');
   message.channel.send(`{\n${emojiList} \n}`, { code: true });

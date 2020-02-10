@@ -124,7 +124,7 @@ module.exports = (client) => {
 
         } else {
           // If integers has > 2 args
-          messageOut = `Hey ${messageAuthor}, you have to give me 0, 1 or 2 number ya dingus`;
+          const messageOut = `Hey ${messageAuthor}, you have to give me 0, 1 or 2 number ya dingus`;
           return messageOut;
         }
       }
@@ -152,13 +152,17 @@ module.exports = (client) => {
   client.wait = require("util").promisify(setTimeout);
 
   // Catching exceptions with more details because I am dumb
+  // eslint-disable-next-line no-undef
   process.on("uncaughtException", (err) => {
+    // eslint-disable-next-line no-undef
     const errorMsg = err.stack.replace(new RegExp(`${__dirname}/`, "g"), "./");
     client.logger.error(`Uncaught Exception: ${errorMsg}`);
     console.error(err);
+    // eslint-disable-next-line no-undef
     process.exit(1);
   });
 
+  // eslint-disable-next-line no-undef
   process.on("unhandledRejection", err => {
     client.logger.error(`Unhandled rejection: ${err}`);
     console.error(err);

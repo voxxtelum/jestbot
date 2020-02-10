@@ -1,6 +1,6 @@
 const random = require('../addons/random.js');
 
-exports.run = async (client, message, args) => {
+exports.run = async (client, message) => {
 
   // Need to grab last 2 messages and .last() to get message to transform
   message.channel.fetchMessages({ limit: 2 })

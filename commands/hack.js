@@ -1,27 +1,27 @@
-/*========================= TODO ========================*
 
-
-*/
-const interval = require('interval-promise')
+const interval = require('interval-promise');
 
 // What is the command listening for?
 exports.run = async (client, message, args) => {
 
-  const username = message.guild.members.find(val => val.id === message.author.id).displayName;
-  var hackBlock = `Hacking ${username}.`;
+  let username = (args.length > 0)
+    ? args.join(' ').truncate(30).padEnd(33, ' ')
+    : message.guild.members.find(val => val.id === message.author.id).displayName.truncate(30).padEnd(33, ' ');
+
+  var hackBlock = `> Hacking ${username}                         \n[=                                              ]  4% `;
 
   const hackAppend = [
-    `Hacking ${username}..`,
-    `Hacking ${username}...`,
-    `Hacking ${username}....\nCreating GUI Interface in Visual Basic.`,
-    `Hacking ${username}.\nCreating GUI Interface in Visual Basic..`,
-    `Hacking ${username}..\nCreating GUI Interface in Visual Basic...`,
-    `Hacking ${username}...\nCreating GUI Interface in Visual Basic....READY\nTracking IP Address.`,
-    `Hacking ${username}....\nCreating GUI Interface in Visual Basic....READY\nTracking IP Address..`,
-    `Hacking ${username}.\nCreating GUI Interface in Visual Basic....READY\nTracking IP Address...`,
-    `Hacking ${username}..\nCreating GUI Interface in Visual Basic....READY\nTracking IP Address....`,
-    `Hacking ${username}...\nCreating GUI Interface in Visual Basic....READY\nTracking IP Address....ACQUIRED`,
-    `Hacking ${username}...COMPLETE\nCreating GUI Interface in Visual Basic....READY\nTracking IP Address....ACQUIRED`
+    `> Hacking ${username}                         \n[==                                             ] 11%`,
+    `> Hacking ${username}                         \n[=======                                        ] 18%`,
+    `> Hacking ${username}                         \n[==========                                     ] 24%\n> Creating GUI Interface in Visual Basic.`,
+    `> Hacking ${username}                         \n[===============                                ] 33%\n> Creating GUI Interface in Visual Basic..`,
+    `> Hacking ${username}                         \n[==================                             ] 42%\n> Creating GUI Interface in Visual Basic...`,
+    `> Hacking ${username}                         \n[========================                       ] 48%\n> Creating GUI Interface in Visual Basic      READY ✓\n> Tracking IP Address.`,
+    `> Hacking ${username}                         \n[===============================                ] 60%\n> Creating GUI Interface in Visual Basic      READY ✓\n> Tracking IP Address..`,
+    `> Hacking ${username}                         \n[======================================         ] 79%\n> Creating GUI Interface in Visual Basic      READY ✓\n> Tracking IP Address...`,
+    `> Hacking ${username}                         \n[=============================================  ] 91%\n> Creating GUI Interface in Visual Basic      READY ✓\n> Tracking IP Address....`,
+    `> Hacking ${username}                         \n[============================================== ] 99%\n> Creating GUI Interface in Visual Basic      READY ✓\n> Tracking IP Address                      ACQUIRED ✓`,
+    `> Hacking ${username}COMPLETE ✓\n> Creating GUI Interface in Visual Basic      READY ✓\n> Tracking IP Address                      ACQUIRED ✓`
   ];
 
   const delay = 1000;

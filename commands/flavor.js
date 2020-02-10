@@ -1,7 +1,7 @@
 const quotes = require('../lang/fieri.json');
 const random = require('../addons/random.js');
 
-exports.run = async (client, message, args) => {
+exports.run = async (client, message) => {
 
   const guyQuote = random.element(quotes);
 
@@ -10,7 +10,6 @@ exports.run = async (client, message, args) => {
   let flavorEmoji = (flavor) ? `<:flavor:${flavor.id}>` : '';
 
   message.channel.send(`${flavorEmoji} ${guyQuote}`);
-
 
 }
 

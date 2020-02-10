@@ -40,7 +40,7 @@ exports.run = async (client, message) => {
           newMessage = [],
           transformChance = .4;
 
-        lastMessage.forEach((word, index, array) => {
+        lastMessage.forEach((word, index) => {
 
           // skip first word
           if (index === 0) {

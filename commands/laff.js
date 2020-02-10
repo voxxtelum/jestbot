@@ -3,7 +3,7 @@
 
 */
 
-exports.run = async (client, message, args) => {
+exports.run = async (client, message) => {
 
   message.channel.send({ files: ["./img/laff.png"] });
 
