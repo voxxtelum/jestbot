@@ -9,15 +9,15 @@ RUN apk add --no-cache \
   build-base \
   musl-dev \
   pixman-dev \
-  libjpeg-turbo-dev \
-  && npm install canvas \
-  && npm install
-RUN apk add --no-cache \
   cairo-dev \
   pango-dev \
   jpeg-dev \
   giflib \
-  && apk add msttcorefonts-installer \
+  libjpeg-turbo-dev \
+  && npm install canvas \
+  && npm install
+RUN apk add --no-cache \
+  msttcorefonts-installer \
   && update-ms-fonts \
   && fc-cache -f
 EXPOSE 3000
