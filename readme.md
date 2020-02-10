@@ -18,11 +18,8 @@
 
 ```json
 {
-  // Bot owner ID
   "ownerID": "User ID"
-  // Bot token from https://discordapp.com/developers/applications/me
   "token": "token"
-  // Bot Activity message that will load on.ready
   "botActivity": "activity"
 }
 ```
