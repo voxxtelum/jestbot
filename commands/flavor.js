@@ -13,7 +13,6 @@ exports.run = async (client, message) => {
 
 }
 
-
 exports.conf = {
   // Enbable/disable command
   enabled: true,

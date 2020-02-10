@@ -1,10 +1,4 @@
-
 exports.run = async (client, message) => {
-  /*
-    let helpMessage = `Welcome to Jestbot 2.0!
-    To play with bogs, type **!bogs**. For a laff, type **!laff**.
-    To make everyone around you feel disgusted and resent your presence type **!uwu**.`;
-    */
 
   let helpMessage = "```" +
     "                    __    __              __            ___     \n" +
@@ -21,7 +15,6 @@ exports.run = async (client, message) => {
     "***NEW IN JESTBOT2: ELECTRIC BOGALOO***\n" +
     "!shuffle well, shuffles up the last message.\n" +
     "!roll works just like you expect it to.```";
-
 
   message.channel.send(helpMessage);
 

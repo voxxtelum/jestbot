@@ -19,17 +19,16 @@ exports.run = async (client, message, args) => {
   };
 
   if (args.length > 0) {
+    // eslint-disable-next-line no-useless-escape
     const regex = /[-a-zA-Z0-9@:%._\+~#=]{1,256}\.[a-zA-Z0-9()]{1,6}\b([-a-zA-Z0-9()@:%_\+.~#?&//=]*)/g;
     if (regex.test(args[0])) {
-      // remove URL from args array
 
+      // remove URL from args array
       const messageArgs = args.splice(1).join(' ');
 
       let messageArr = (messageArgs.includes(',' || ';'))
         ? messageArgs.split(/[,;]+/g)
         : messageArgs.split(' ');
-
-      //const messageArr = args.splice(1).join(' ').split(/[,;]+/g);
 
       const topText = messageArr[0].trim(),
         botText = messageArr[1].trim();
@@ -69,9 +68,7 @@ exports.run = async (client, message, args) => {
       message.channel.send(`Idk what's wrong figure it out`);
     }
   }
-
 }
-
 
 exports.conf = {
   // Enbable/disable command
