@@ -4,16 +4,14 @@ COPY . .
 # --no-cache: download package index on-the-fly, no need to cleanup afterwards
 # --virtual: bundle packages, remove whole bundle at once, when done
 RUN apk add --no-cache \
-  python \
-  g++ \
   build-base \
-  musl-dev \
-  pixman-dev \
   cairo-dev \
-  pango-dev \
   jpeg-dev \
-  giflib \
-  libjpeg-turbo-dev \
+  pango-dev \
+  giflib-dev \
+  python \
+  make \
+  g++ \
   && npm install
 RUN apk add --no-cache \
   msttcorefonts-installer \
