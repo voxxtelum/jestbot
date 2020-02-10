@@ -14,7 +14,6 @@ RUN apk add --no-cache \
   jpeg-dev \
   giflib \
   libjpeg-turbo-dev \
-  && npm install canvas \
   && npm install
 RUN apk add --no-cache \
   msttcorefonts-installer \
