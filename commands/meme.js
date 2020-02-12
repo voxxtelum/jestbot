@@ -1,98 +1,133 @@
-/*eslint no-warning-comments: ["error", { "terms": ["todo", "fixme", "any other term"], "location": "anywhere" }]*/
 /*
-todo - breakout canvas function
-
-todo - make order of args less important
-     - remove url with a regex test and splice
+// eslint-disable-next-line no-warning-comments
 todo - allow more arguments for customisation
-     - color:, font:
-
+     - -color red, -font impact
+todo - set a minimum font size
 */
 
 const Discord = require("discord.js");
 
 const Canvas = require('canvas');
 
-
 exports.run = async (client, message, args) => {
 
-  // set default font size at 70pt and scale it down
-  // if the width of the text string is wider than the 
-  // image width * .98 untll it fits
-  const setFont = (canvas, text) => {
-    const ctx = canvas.getContext('2d');
-    // default maximum font size
-    let fontSize = 70;
-    do {
-      ctx.font = `bold ${fontSize -= 4}px sans-serif`;
-    } while (ctx.measureText(text).width > canvas.width * .98);
-    return ctx.font;
-  };
+  //? "font: impact" regex ([-]{0,2}(font)[:;-]\s?[\w\d]+)
+  //? string with comma regex (([ ]*[\w]+)+(?=,))
 
-  if (args.length > 0) {
-    // eslint-disable-next-line no-useless-escape
-    const regex = /[-a-zA-Z0-9@:%._\+~#=]{1,256}\.[a-zA-Z0-9()]{1,6}\b([-a-zA-Z0-9()@:%_\+.~#?&//=]*)/g;
-    if (regex.test(args[0])) {
+  if (args[0] == 'help') {
+    //* show help message
+  } else {
 
-      // ? Get Arguments after URL if first argument is URL
-      // remove URL from args array
-      const messageArgs = args.splice(1).join(' ');
+    const filterArgs = (userArgs) => {
+      const regexURL = /((([A-Za-z]{3,9}:(?:\/\/)?)(?:[\-;:&=\+\$,\w]+@)?[A-Za-z0-9\.\-]+|(?:www\.|[\-;:&=\+\$,\w]+@)[A-Za-z0-9\.\-]+)((?:\/[\+~%\/\.\w\-_]*)?\??(?:[\-\+=&;%@\.\w_]*)#?(?:[\.\!\/\\\w]*))?)/g;
+      const regexTop = /(?<=(-(t+[op]*)+[ ;:]+))[^-|.]+/g;
+      const regexBot = /(?<=(-(b+[ottom]*)+[ ;:]+))[^-|.]+/g;
 
-      let messageArr = (messageArgs.includes(',' || ';'))
-        ? messageArgs.split(/[,;]+/g)
-        : messageArgs.split(' ');
+      const inputStr = userArgs.join(' ');
 
-      const topText = messageArr[0].trim(),
-        botText = messageArr[1].trim();
+      let inputError = '';
 
-      let imgURL = args[0];
-      // ? End Arguments
+      const inputURL = inputStr.match(regexURL);
+      if (!inputURL) {
+        inputError += 'urlError ';
+      }
+      let url = (inputURL) ? inputURL[0].trim() : '';
+      const textStr = inputStr.replace(new RegExp(url, 'g'), ''),
+        matchTop = textStr.match(regexTop),
+        matchBot = textStr.match(regexBot),
+        inputTop = (matchTop) ? matchTop[0].trim() : '',
+        inputBot = (matchBot) ? matchBot[0].trim() : '';
 
-      // ? Start breakout. Load image, Create cavnas, Draw text
-      const background = await Canvas.loadImage(imgURL);
-      var bW = background.width;
-      var bH = background.height;
+      if (!matchTop && !matchBot) {
+        inputError += 'strError';
+      }
 
-      const canvas = Canvas.createCanvas(bW, bH);
+      return {
+        imgURL: url,
+        topText: inputTop,
+        bottomText: inputBot,
+        error: inputError
+      };
+
+    };
+
+    // set default font size at 70pt and scale it down
+    // if the width of the text string is wider than the 
+    // image width * .98 untll it fits
+    const setFont = (canvas, text) => {
       const ctx = canvas.getContext('2d');
+      // default maximum font size
+      let fontSize = 70;
+      do {
+        ctx.font = `bold ${fontSize -= 2}px sans-serif`;
+      } while (ctx.measureText(text).width > canvas.width * .98 || fontSize <= 24); //* trying a min font size
+      return ctx.font;
+    };
 
-      ctx.drawImage(background, 0, 0);
+    const userInput = filterArgs(args);
 
-      ctx.scale(1, 1);
+    console.log(userInput);
 
-      ctx.font = setFont(canvas, topText);
-      ctx.fillStyle = "#FFFFFF";
-      ctx.strokeStyle = "#000000";
-      ctx.textAlign = 'center';
-      ctx.textBaseline = "top";
-      ctx.fillText(topText, canvas.width * .5, canvas.height * .02, canvas.width);
-      ctx.strokeText(topText, canvas.width * .5, canvas.height * .02, canvas.width);
-      ctx.font = setFont(canvas, botText);
-      ctx.textBaseline = "bottom";
-      ctx.fillText(botText, canvas.width * .5, canvas.height * .98, canvas.width);
-      ctx.strokeText(botText, canvas.width * .5, canvas.height * .98, canvas.width);
+    if (userInput.error.includes('urlError')) {
+      //! user didnt include text
+      console.log(`didnt add utl`);
+    }
+    else if (userInput.error.includes('strError')) {
+      //! user didnt add url
+      console.log(`didnt add text`);
+    }
+    else {
 
-      // ? End breakout. SHould return canvas to send to discord
+      const topText = userInput.topText,
+        botText = userInput.bottomText;
 
-      const attachment = new Discord.Attachment(canvas.toBuffer(), 'meme-image.png');
+      await Canvas.loadImage(userInput.imgURL)
+        .then(background => {
 
-      message.channel.send('', attachment);
+          //? Begin Draw --->
 
-      // delete message to reduce clutter
-      if (message) message.delete();
+          var bgWidth = background.width;
+          var bgHeight = background.height;
 
-    } else {
-      message.channel.send(`Idk what's wrong figure it out`);
+          const canvas = Canvas.createCanvas(bgWidth, bgHeight);
+          const ctx = canvas.getContext('2d');
+
+          ctx.drawImage(background, 0, 0);
+
+          ctx.font = setFont(canvas, topText);
+          ctx.fillStyle = "#FFFFFF";
+          ctx.strokeStyle = "#000000";
+          ctx.textAlign = 'center';
+          ctx.textBaseline = "top";
+          ctx.fillText(topText, canvas.width * .5, canvas.height * .02, canvas.width);
+          ctx.strokeText(topText, canvas.width * .5, canvas.height * .02, canvas.width);
+          ctx.font = setFont(canvas, botText);
+          ctx.textBaseline = "bottom";
+          ctx.fillText(botText, canvas.width * .5, canvas.height * .98, canvas.width);
+          ctx.strokeText(botText, canvas.width * .5, canvas.height * .98, canvas.width);
+
+          //? End Draw
+
+          const attachment = new Discord.Attachment(canvas.toBuffer(), 'meme-image.png');
+
+          message.channel.send('', attachment);
+
+          // delete message to reduce clutter
+          if (message.channel.type == 'guild') message.delete();
+        }).catch(error => {
+          console.log(`${error} - URL NOT IMAGE`);
+        });
+
     }
   }
-}
+};
 
 exports.conf = {
   // Enbable/disable command
   enabled: true,
   // set true if only usable in normal channels
   // false lets bot respond to DMs
-  guildOnly: true,
+  guildOnly: false,
   // bot also reacts to these commands
   aliases: [],
 };

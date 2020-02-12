@@ -1,6 +1,7 @@
-/*========================= TODO ========================*
-*** Add emojis to file or enmap
 
+/*
+// eslint-disable-next-line no-warning-comments
+todo Add emojis to file or enmap
 */
 exports.run = async (client, message) => {
 
