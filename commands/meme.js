@@ -1,8 +1,8 @@
 /*
 // eslint-disable-next-line no-warning-comments
-todo - allow more arguments for customisation
-     - -color red, -font impact
-todo - set a minimum font size
+todo -> allow more arguments for customisation
+?    -> -color red, -font impact
+todo -> set a minimum font size
 */
 
 const Discord = require("discord.js");
@@ -11,14 +11,15 @@ const Canvas = require('canvas');
 
 exports.run = async (client, message, args) => {
 
-  //? "font: impact" regex ([-]{0,2}(font)[:;-]\s?[\w\d]+)
-  //? string with comma regex (([ ]*[\w]+)+(?=,))
+  //* "font: impact" regex ([-]{0,2}(font)[:;-]\s?[\w\d]+)
+  //* string with comma regex (([ ]*[\w]+)+(?=,))
 
   if (args[0] == 'help') {
-    //* show help message
+    //! show help message
   } else {
 
     const filterArgs = (userArgs) => {
+      // eslint-disable-next-line no-useless-escape
       const regexURL = /((([A-Za-z]{3,9}:(?:\/\/)?)(?:[\-;:&=\+\$,\w]+@)?[A-Za-z0-9\.\-]+|(?:www\.|[\-;:&=\+\$,\w]+@)[A-Za-z0-9\.\-]+)((?:\/[\+~%\/\.\w\-_]*)?\??(?:[\-\+=&;%@\.\w_]*)#?(?:[\.\!\/\\\w]*))?)/g;
       const regexTop = /(?<=(-(t+[op]*)+[ ;:]+))[^-|.]+/g;
       const regexBot = /(?<=(-(b+[ottom]*)+[ ;:]+))[^-|.]+/g;
@@ -48,7 +49,6 @@ exports.run = async (client, message, args) => {
         bottomText: inputBot,
         error: inputError
       };
-
     };
 
     // set default font size at 70pt and scale it down
@@ -84,7 +84,7 @@ exports.run = async (client, message, args) => {
       await Canvas.loadImage(userInput.imgURL)
         .then(background => {
 
-          //? Begin Draw --->
+          //? Begin Draw -->
 
           var bgWidth = background.width;
           var bgHeight = background.height;
@@ -106,7 +106,7 @@ exports.run = async (client, message, args) => {
           ctx.fillText(botText, canvas.width * .5, canvas.height * .98, canvas.width);
           ctx.strokeText(botText, canvas.width * .5, canvas.height * .98, canvas.width);
 
-          //? End Draw
+          //? End Draw 
 
           const attachment = new Discord.Attachment(canvas.toBuffer(), 'meme-image.png');
 
@@ -115,6 +115,7 @@ exports.run = async (client, message, args) => {
           // delete message to reduce clutter
           if (message.channel.type == 'guild') message.delete();
         }).catch(error => {
+          //! URL doesn't point to image
           console.log(`${error} - URL NOT IMAGE`);
         });
 
