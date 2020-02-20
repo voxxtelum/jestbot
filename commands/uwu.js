@@ -14,7 +14,31 @@ exports.run = async (client, message, args) => {
   message.channel.fetchMessages({ limit: 2 }).then(messages => {
     if (messages.last().attachments.size > 0) {
       message.channel.send("I can't do that on picture ya dingus");
-    } else if (args[0].trim().toLowerCase() == 'leaderboard') {
+    } else if (!args.length) {
+      const lastMessage = messages
+          .last()
+          .content.trim()
+          .split(/[ ,]+/),
+        newMessage = [];
+
+      lastMessage.forEach(word => {
+        if (client.checkEmojiStr(word)) {
+          newMessage.push(word);
+        } else {
+          newMessage.push(owoify(word, 'uwu'));
+        }
+      });
+
+      const key = `${message.guild.id}-${message.author.id}`;
+      client.uwuCount.ensure(key, {
+        user: message.author.id,
+        guild: message.guild.id,
+        points: 1
+      });
+      client.uwuCount.inc(key, 'points');
+
+      message.channel.send(newMessage.join(' ').truncate(2000));
+    } else if (args[0].toLowerCase() == 'leaderboard') {
       const key = `${message.guild.id}-${message.author.id}`;
       client.uwuCount.ensure(key, {
         user: message.author.id,
@@ -52,7 +76,7 @@ exports.run = async (client, message, args) => {
       });
       // Send the message as a code block
       message.channel.send(uwuBoard.join('\n'), { code: true });
-    } else if (args[0].trim().toLowerCase() == 'stats') {
+    } else if (args[0].toLowerCase() == 'stats') {
       const key = `${message.guild.id}-${message.author.id}`;
       client.uwuCount.ensure(key, {
         user: message.author.id,
@@ -66,30 +90,6 @@ exports.run = async (client, message, args) => {
       message.channel.send(
         `${messageAuthor} has used !uwu ${uwuPoints} times!`
       );
-    } else if (!args.length) {
-      const lastMessage = messages
-          .last()
-          .content.trim()
-          .split(/[ ,]+/),
-        newMessage = [];
-
-      lastMessage.forEach(word => {
-        if (client.checkEmojiStr(word)) {
-          newMessage.push(word);
-        } else {
-          newMessage.push(owoify(word, 'uwu'));
-        }
-      });
-
-      const key = `${message.guild.id}-${message.author.id}`;
-      client.uwuCount.ensure(key, {
-        user: message.author.id,
-        guild: message.guild.id,
-        points: 1
-      });
-      client.uwuCount.inc(key, 'points');
-
-      message.channel.send(newMessage.join(' ').truncate(2000));
     } else {
       console.log('something went wrong with uwu');
     }
