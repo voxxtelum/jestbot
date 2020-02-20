@@ -24,7 +24,9 @@ RUN apk --no-cache --virtual .build-deps add \
   msttcorefonts-installer \
   && update-ms-fonts \
   && fc-cache -f
-RUN apk del .build-deps
+RUN apk del \
+  .build-deps \
+  .canvas-deps
 EXPOSE 3000
 VOLUME ./config
 CMD node index.js
