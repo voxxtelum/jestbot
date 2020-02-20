@@ -48,6 +48,7 @@ exports.run = async (client, message, args) => {
       // Creata array out of the uwuCount enmap, sort by points desc,
       // and take only the top 10 ones
       const countArray = client.uwuCount
+        .filter(p => p.guild === message.guild.id)
         .array()
         .sort((a, b) => (a.points < b.points ? 1 : -1))
         .slice(0, 8);
