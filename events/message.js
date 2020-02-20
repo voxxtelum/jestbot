@@ -4,17 +4,22 @@ module.exports = async (client, message) => {
   if (message.author.bot) return;
 
   // Load settings
-  const settings = message.settings = client.getSettings(message.guild);
+  const settings = (message.settings = client.getSettings(message.guild));
 
   // Ignore if message doesn't start with prefix
   if (message.content.indexOf(settings.prefix) !== 0) return;
 
   // Separate out arguments
-  const args = message.content.slice(settings.prefix.length).trim().split(/ +/g);
+  const args = message.content
+    .slice(settings.prefix.length)
+    .trim()
+    .split(/ +/g);
   const command = args.shift().toLowerCase();
 
   // Check whether the command exists
-  const cmd = client.commands.get(command) || client.commands.get(client.aliases.get(command));
+  const cmd =
+    client.commands.get(command) ||
+    client.commands.get(client.aliases.get(command));
 
   if (!cmd) return;
 
@@ -23,7 +28,7 @@ module.exports = async (client, message) => {
     return message.channel.send("You can't do this in a DM.");
 
   message.flags = [];
-  while (args[0] && args[0][0] === "-") {
+  while (args[0] && args[0][0] === '-') {
     message.flags.push(args.shift().slice(1));
   }
 

@@ -1,16 +1,16 @@
-
 const interval = require('interval-promise');
 
 // What is the command listening for?
 exports.run = async (client, message, args) => {
-
   const getUserName = (msg, argArr) => {
     if (msg.mentions.users.first()) {
       if (msg.mentions.users.first().id == client.user.id) {
         let hackTar = 'self';
         return hackTar;
       } else {
-        let hackTar = msg.guild.members.find(val => val.id === msg.mentions.users.first().id).displayName;
+        let hackTar = msg.guild.members.find(
+          val => val.id === msg.mentions.users.first().id
+        ).displayName;
         return hackTar;
       }
     } else {
@@ -19,17 +19,20 @@ exports.run = async (client, message, args) => {
     }
   };
 
-  let username = (args.length > 0)
-    ? getUserName(message, args)
-    : message.guild.members.find(val => val.id === message.author.id).displayName;
+  let username =
+    args.length > 0
+      ? getUserName(message, args)
+      : message.guild.members.find(val => val.id === message.author.id)
+          .displayName;
 
   if (username == 'self') {
     // message.channel.send(`You can't hack the hacker.`, { code: true });
 
-    const userHack = message.guild.members.find(val => val.id === message.author.id).displayName;
+    const userHack = message.guild.members.find(
+      val => val.id === message.author.id
+    ).displayName;
 
-    var hackBlock =
-      `> You can't hack the hackerman, ${userHack}   \n[=                                              ]  4% `;
+    let hackBlock = `> You can't hack the hackerman, ${userHack}   \n[=                                              ]  4% `;
     const hackAppend = [
       `> You can't hack the hackerman, ${userHack}   \n[==                                             ] 11%`,
       `> You can't hack the hackerman, ${userHack}   \n[=======                                        ] 18%`,
@@ -47,21 +50,20 @@ exports.run = async (client, message, args) => {
     const delay = 1000;
     let i = 0;
 
-    message.channel.send(hackBlock, { code: true })
-      .then((msg) => {
-        interval(async () => {
+    message.channel.send(hackBlock, { code: true }).then(msg => {
+      interval(
+        async () => {
           await msg.edit(hackAppend[i], { code: true });
           i++;
-        }, delay, { iterations: hackAppend.length })
-      });
-
-  }
-
-  else {
-
+        },
+        delay,
+        { iterations: hackAppend.length }
+      );
+    });
+  } else {
     username = username.truncate(30).padEnd(33, ' ');
 
-    var hackBlock = `> Hacking ${username}                         \n[=                                              ]  4% `;
+    let hackBlock = `> Hacking ${username}                         \n[=                                              ]  4% `;
 
     const hackAppend = [
       `> Hacking ${username}                         \n[==                                             ] 11%`,
@@ -80,15 +82,17 @@ exports.run = async (client, message, args) => {
     const delay = 1000;
     let i = 0;
 
-    message.channel.send(hackBlock, { code: true })
-      .then((msg) => {
-        interval(async () => {
+    message.channel.send(hackBlock, { code: true }).then(msg => {
+      interval(
+        async () => {
           await msg.edit(hackAppend[i], { code: true });
           i++;
-        }, delay, { iterations: hackAppend.length })
-      });
+        },
+        delay,
+        { iterations: hackAppend.length }
+      );
+    });
   }
-
 };
 
 exports.conf = {
@@ -98,17 +102,17 @@ exports.conf = {
   // false lets bot respond to DMs
   guildOnly: false,
   // bot also reacts to these commands
-  aliases: [],
+  aliases: []
 };
 
 exports.help = {
   // name of command that triggers response
-  name: "hack",
+  name: 'hack',
   // bot category, might want to use this somehow later
   // with a !help command to tell people how to use it
-  category: "Miscellaneous",
+  category: 'Miscellaneous',
   // same as above; pretty explanatory
-  description: "hack em",
+  description: 'hack em',
   // also same as above, just useful for !help command
-  usage: "hack"
+  usage: 'hack'
 };

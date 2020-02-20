@@ -1,4 +1,3 @@
-
 /*======================================================*
 
  /$$                                        /$$$$$$ 
@@ -26,26 +25,27 @@ const random = require('../addons/random.js');
 const emoji = require('../config/emoji.json');
 
 exports.run = async (client, message) => {
-
   // Fetch !command message and previous message
-  message.channel.fetchMessages({ limit: 2 })
+  message.channel
+    .fetchMessages({ limit: 2 })
 
     .then(messages => {
-
       if (messages.last().attachments.size > 0) {
         message.channel.send("I can't do that on picture ya dingus");
       } else {
         // Sort out messge before command
-        const lastMessage = messages.last().content.trim().split(/[ ,]+/),
+        const lastMessage = messages
+            .last()
+            .content.trim()
+            .split(/[ ,]+/),
           newMessage = [],
-          transformChance = .4;
+          transformChance = 0.4;
 
         lastMessage.forEach((word, index) => {
-
           // skip first word
           if (index === 0) {
             newMessage.push(word);
-          } else if (client.checkEmojiArr(newMessage, (index - 1))) {
+          } else if (client.checkEmojiArr(newMessage, index - 1)) {
             newMessage.push(word);
           } else if (word.length < 4) {
             newMessage.push(word);
@@ -57,23 +57,20 @@ exports.run = async (client, message) => {
           }
         });
 
-        message.channel.send(newMessage.join(" "));
-
+        message.channel.send(newMessage.join(' '));
       }
-
     });
-
 };
 
 exports.conf = {
   enabled: true,
   guildOnly: true,
-  aliases: ['bbogs'],
+  aliases: ['bbogs']
 };
 
 exports.help = {
-  name: "bogs",
-  category: "bogs",
-  description: "play with some bogs",
-  usage: "bogs"
+  name: 'bogs',
+  category: 'bogs',
+  description: 'play with some bogs',
+  usage: 'bogs'
 };

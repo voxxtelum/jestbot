@@ -6,12 +6,12 @@ exports.run = async (client, message, args) => {
 exports.conf = {
   enabled: true,
   guildOnly: false,
-  aliases: [],
+  aliases: []
 };
 
 exports.help = {
-  name: "roll",
-  category: "Miscellaneous",
-  description: "Rolls a number between 1 and 100, or a custom range.",
-  usage: "roll, roll x, roll x-y, roll x y"
+  name: 'roll',
+  category: 'Miscellaneous',
+  description: 'Rolls a number between 1 and 100, or a custom range.',
+  usage: 'roll, roll x, roll x-y, roll x y'
 };
