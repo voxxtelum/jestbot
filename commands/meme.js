@@ -133,7 +133,7 @@ exports.run = async (client, message, args) => {
           message.channel.send('', attachment);
 
           // delete message to reduce clutter
-          if (message.channel.type == 'guild') message.delete();
+          if (message.channel.type == 'guild') message.delete(2000);
         })
         .catch(error => {
           //! URL doesn't point to image

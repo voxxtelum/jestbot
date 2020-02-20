@@ -12,8 +12,8 @@ RUN apk add --no-cache \
   python \
   make \
   g++ \
-  && npm install
-RUN apk add --no-cache \
+  && npm install \
+  && apk add --no-cache \
   msttcorefonts-installer \
   && update-ms-fonts \
   && fc-cache -f

@@ -14,7 +14,7 @@ exports.run = async (client, message, args) => {
   message.channel.fetchMessages({ limit: 2 }).then(messages => {
     if (messages.last().attachments.size > 0) {
       message.channel.send("I can't do that on picture ya dingus");
-    } else if (args[0] == 'leaderboard') {
+    } else if (args[0].trim().toLowerCase() == 'leaderboard') {
       const key = `${message.guild.id}-${message.author.id}`;
       client.uwuCount.ensure(key, {
         user: message.author.id,
@@ -26,7 +26,7 @@ exports.run = async (client, message, args) => {
       const countArray = client.uwuCount
         .array()
         .sort((a, b) => (a.points < b.points ? 1 : -1))
-        .slice(0, 10);
+        .slice(0, 8);
       // Leaderboard title
       const uwuBoard = ['･ﾟ★ uwu Leaderboard ヽ(*・ω・)ﾉ ★･ﾟ\n'];
 
@@ -52,7 +52,7 @@ exports.run = async (client, message, args) => {
       });
       // Send the message as a code block
       message.channel.send(uwuBoard.join('\n'), { code: true });
-    } else if (args[0] == 'stats') {
+    } else if (args[0].trim().toLowerCase() == 'stats') {
       const key = `${message.guild.id}-${message.author.id}`;
       client.uwuCount.ensure(key, {
         user: message.author.id,
