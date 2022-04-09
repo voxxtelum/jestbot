@@ -17,7 +17,7 @@
     "discord.js": "^11.5.1",
     "enmap": "^5.2.4",
     "interval-promise": "^1.4.0",
-    "moment": "^2.24.0",
+    "moment": "^2.29.2",
     "owoify-js": "^1.0.7",
     "promisify-fs": "^1.0.39",
     "random-js": "^2.1.0"
